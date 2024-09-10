@@ -1,8 +1,6 @@
 # Knowledge-driven-stochastic-modeling
 Code for "Knowledge-driven stochastic modeling of geological geometry features conditioned on drillholes and outcrops".
 
-# I am updating this repo, and will provide more instructions and examples ASAP.
-
 Authors:
 
 Xiaolong Wei (xwei2@stanford.edu)
