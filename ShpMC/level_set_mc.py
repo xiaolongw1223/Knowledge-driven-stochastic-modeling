@@ -9,11 +9,9 @@ Created on Thu Aug  3 12:33:33 2023
 
 import numpy as np
 import random
-from scipy import ndimage as ndi
 from tqdm import tqdm
 import skfmm
 from ShpMC.loss_functions import loss_function_binary, model_sign_dist_to_data, find_sketch_from_model_3d, loss_ordinary_procrustes_analysis
-from ShpMC.utils import transformation_matrix_2d
 
 
 class StochasticLevelSet(object):

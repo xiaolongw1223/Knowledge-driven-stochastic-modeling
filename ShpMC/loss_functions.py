@@ -7,7 +7,6 @@ Created on Wed Sep 20 16:12:37 2023
 """
 
 import numpy as np
-from scipy.spatial import procrustes
 import random
 
 
@@ -30,13 +29,13 @@ def loss_function_binary(observations, observations_sign_dist, observations_sign
 
     Returns
     -------
-    loss : TYPE
+    loss : float
         loss function
-    O_ik : TYPE
+    O_ik : float
         logistic loss func, i.e., the number of mismatch points
-    O_bias : TYPE
+    O_bias : float
         square mean error (bias) at borehole contact points 
-    O_var : TYPE
+    O_var : float
         mean square error (var) at borehole contact points
 
     """
@@ -125,6 +124,7 @@ def find_sketch_from_model_3d(model, ind_, direction):
     
     
     if isinstance(ind_, list):
+        # Randomly select a cross-section
         ind_tmp = random.randint(ind_[0], ind_[-1])
         if direction == 'x': model_sketch = model[ind_tmp, :, :]
         if direction == 'y': model_sketch = model[:, ind_tmp, :]
@@ -194,7 +194,7 @@ def loss_ordinary_procrustes_analysis(shape_reference, shape_comparision, contri
         shape_reference_centered = np.concatenate((shape_reference_centered, np.zeros([row_comp - row_ref, 2])), 0)
         
     # Optimal rotation matrix
-    A = np.dot(shape_reference_centered.T,shape_comparision_centered)
+    A = np.dot(shape_reference_centered.T, shape_comparision_centered)
     U, s, Vt = np.linalg.svd(A, full_matrices=False)
     R = np.dot(Vt.T, U.T)
 

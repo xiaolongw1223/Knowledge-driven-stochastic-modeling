@@ -10,41 +10,6 @@ import gstools as gs
 import numpy as np
 
 
-# def generate_gaussian_field_3D(theta, x, y, z, seed = None):
-    
-#     """
-    
-#     Parameters
-#     ----------
-#     theta : array
-#         an array contains 7 elems of variogram, i.e., mean, var, range x, range y, range z, anisotropy ratios x-y, anisotropy ratios x-z
-#     x,y,z : array
-#         spatial coords
-#     seed : int/float
-
-#     Returns
-#     -------
-#     field : array
-#         3D random gaussian field
-
-#     """
-    
-    
-#     model = gs.Gaussian(
-#         dim = 3, 
-#         var = theta[1], 
-#         len_scale = [theta[2],theta[3],theta[4]], 
-#         angles = [theta[5]*np.pi/180, theta[6]*np.pi/180]
-#         )
-    
-#     if seed:
-#         srf = gs.SRF(model, seed=seed)
-#     else: 
-#         srf = gs.SRF(model)
-        
-#     field = srf.structured([x, y, z]) + theta[0]
-    
-#     return field
 
 
 class GaussianField(object):
