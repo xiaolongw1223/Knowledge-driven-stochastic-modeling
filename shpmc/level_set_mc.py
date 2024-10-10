@@ -11,7 +11,7 @@ import numpy as np
 import random
 from tqdm import tqdm
 import skfmm
-from ShpMC.loss_functions import loss_function_binary, model_sign_dist_to_data, find_sketch_from_model_3d, loss_ordinary_procrustes_analysis
+from shpmc.loss_functions import loss_function_binary, model_sign_dist_to_data, find_sketch_from_model_3d, loss_ordinary_procrustes_analysis
 
 
 class StochasticLevelSet(object):
