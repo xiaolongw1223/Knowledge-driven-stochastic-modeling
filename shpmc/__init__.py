@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Sep 20 17:32:51 2023
-
-@author: xwei2
-"""
 
 from . import geo_stats
 from . import level_set_mc

@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-
-@author: xwei2
-
-"""
-
 import sys
 sys.path.append('../../')
 import numpy as np

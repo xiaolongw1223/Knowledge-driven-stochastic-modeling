@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Sep 20 17:05:57 2023
-
-@author: xwei2
-"""
 
 import gstools as gs
 import numpy as np
