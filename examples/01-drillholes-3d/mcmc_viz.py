@@ -13,23 +13,21 @@ plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
 from discretize import TensorMesh
 
-
 path_i = './inputs/'
 path_o = './outputs/'
 
 mesh = TensorMesh._readUBC_3DMesh(path_i + "mesh.txt")
-drillholes = mesh.read_model_UBC(path_i + 'drillholes.txt')
 model = np.loadtxt(path_o + 'output_model_unique_1d.txt')
 
 # Mean and std models can be used for visualization
-# Please refer to examples/03-drillholes-outcrops-3d
+# Please refer to examples/02-drillholes-outcrops-3d
 model_std = np.std(model, axis=-1)
 model_mean = np.mean(model, axis=-1)
 
-loss = np.loadtxt(path_o + 'output_loss.txt')
-
 
 #%% Loss function
+loss = np.loadtxt(path_o + 'output_loss.txt')
+
 fig = plt.figure(figsize=(10,4))
 ax = plt.subplot()
 ax.plot(loss, c='k', linewidth=2, label='Borehole')
@@ -41,6 +39,7 @@ plt.savefig(path_o + 'fig_loss.png', bbox_inches="tight", dpi=300)
 
 
 #%% Drillholes
+drillholes = mesh.read_model_UBC(path_i + 'drillholes.txt')
 drillholes[np.where(drillholes==0.5)[0]] = 1
 drillholes[np.where(drillholes==0)[0]] = np.nan
 
@@ -48,6 +47,7 @@ ind_list = [15, 25, 35, 38] # The index of drillhole locations at X cross-sectio
 
 for i in range(len(ind_list)):
     
+    # Plot standard deviation model with drillholes
     fig = plt.figure(figsize=(6,6))
     ax1 = plt.subplot(111)
     im = mesh.plot_slice(model_std, ax=ax1, normal='X', ind=ind_list[i],
@@ -68,7 +68,7 @@ for i in range(len(ind_list)):
     cb.set_label('Standard deviation', rotation=270, labelpad=20)
     plt.savefig(path_o + 'fig_model_std_drillhole_{}.png'.format(i), bbox_inches="tight", dpi=300)  
 
-
+    # Plot mean model with drillholes
     fig = plt.figure(figsize=(6,6))
     ax1 = plt.subplot(111)
     im = mesh.plot_slice(model_mean, ax=ax1, normal='X', ind=ind_list[i],
