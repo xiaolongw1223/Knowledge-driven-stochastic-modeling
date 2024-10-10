@@ -17,12 +17,17 @@ path_i = './inputs/'
 path_o = './outputs/'
 
 mesh = TensorMesh._readUBC_3DMesh(path_i + "mesh.txt")
+ind_active = np.loadtxt(path_i + 'ind_active.txt', dtype=bool)
+
+# Compute mean and std models
+# For visualization, please refer to examples/02-drillholes-outcrops-3d
 model = np.loadtxt(path_o + 'output_model_unique_1d.txt')
 
-# Mean and std models can be used for visualization
-# Please refer to examples/02-drillholes-outcrops-3d
 model_std = np.std(model, axis=-1)
+model_std[~ind_active] = np.nan
+
 model_mean = np.mean(model, axis=-1)
+model_mean[~ind_active] = np.nan
 
 
 #%% Loss function
