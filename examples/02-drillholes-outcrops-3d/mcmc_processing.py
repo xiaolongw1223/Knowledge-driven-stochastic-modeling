@@ -12,7 +12,7 @@ import h5py
 path_i = './inputs/'
 path_o = './outputs/'
 
-mesh = TensorMesh._readUBC_3DMesh(path_i + 'mesh.txt')
+mesh = TensorMesh._readUBC_3DMesh(path_i + "mesh.txt")
 
 hf = h5py.File(path_o + 'output_sampling_chain_1.h5', 'r')
 model_array = np.array(hf.get('model_dist'))

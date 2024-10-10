@@ -16,7 +16,11 @@ mesh = TensorMesh._readUBC_3DMesh(path_i + 'mesh.txt')
 
 drillholes = mesh.read_model_UBC(path_i+'drillholes.txt')
 drillholes_3d = drillholes.reshape([mesh.shape_cells[0], mesh.shape_cells[1], mesh.shape_cells[2]], order='F')
-data_3d = [drillholes_3d]
+
+outcrops = mesh.read_model_UBC(path_i+'outcrops.txt')
+outcrops_3d = outcrops.reshape([mesh.shape_cells[0], mesh.shape_cells[1], mesh.shape_cells[2]], order='F')
+
+data_3d = [drillholes_3d, outcrops_3d]
 
 # Initial model
 initial = mesh.read_model_UBC(path_i + 'initial_model.txt')
@@ -46,10 +50,10 @@ L = StochasticLevelSet(
     initial_3d, 
     gaussian_field=gf, 
     max_step=1, 
-    contribution=[1]
+    contribution=[1, 0.1]
     )
 
-loss_array, model_cache, acceptance_count = L.mcmc_sampling_single_chain(iter_num=1000, temperature=3)
+loss_array, model_cache, acceptance_count = L.mcmc_sampling_single_chain(iter_num=1000, temperature=20)
 
 # Save data
 num_chain = 1

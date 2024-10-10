@@ -11,7 +11,7 @@ from discretize import TensorMesh
 path_i = './inputs/'
 path_o = './outputs/'
 
-mesh = TensorMesh._readUBC_3DMesh(path_i + "mesh.txt")
+mesh = TensorMesh._readUBC_3DMesh(path_i + 'mesh.txt')
 ind_active = np.loadtxt(path_i + 'ind_active.txt', dtype=bool)
 
 # Compute mean and std models
