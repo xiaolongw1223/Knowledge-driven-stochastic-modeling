@@ -54,7 +54,7 @@ L = StochasticLevelSet(
     contribution=[1]
     )
 
-loss_array, model_cache, acceptance_count = L.mcmc_sampling_single_chain(iter_num=500, temperature=3)
+loss_array, model_cache, acceptance_count = L.mcmc_sampling_single_chain(iter_num=1000, temperature=3)
 
 # Save data
 num_chain = 1
