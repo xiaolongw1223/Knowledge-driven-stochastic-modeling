@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Aug 24 21:15:42 2023
+Created on Thu Aug 24 21:15:42 2024
 
 @author: xwei2
 """
@@ -11,15 +11,15 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 20
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
-
 from discretize import TensorMesh
 import h5py
 
-path_ = './inputs/'
+path_i = './inputs/'
+path_o = './outputs/'
 
-mesh = TensorMesh._readUBC_3DMesh(path_ + "mesh.txt")
+mesh = TensorMesh._readUBC_3DMesh(path_i + "mesh.txt")
 
-hf = h5py.File('Sampling_chain_1.h5', 'r')
+hf = h5py.File(path_o + 'output_sampling_chain_1.h5', 'r')
 model_array = np.array(hf.get('model_dist'))
 loss = np.array(hf.get('loss'))
 hf.close()
@@ -37,6 +37,6 @@ for i in range(n):
     m[np.where(m_dist_1d >= 0)[0]] = 1
     model_1d[:, i] = m
 
-np.savetxt('model_unique_1d.txt', model_1d)
-np.savetxt('loss.txt', loss)
+np.savetxt(path_o + 'output_model_unique_1d.txt', model_1d)
+np.savetxt(path_o + 'output_loss.txt', loss)
 

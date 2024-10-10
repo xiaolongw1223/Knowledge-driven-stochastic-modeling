@@ -8,7 +8,6 @@ Created on Mon Aug 21 15:12:38 2024
 
 import sys
 sys.path.append('../../')
-
 import numpy as np
 from discretize import TensorMesh
 from shpmc.level_set_mc import StochasticLevelSet
@@ -16,7 +15,7 @@ from shpmc.geo_stats import GaussianField
 import h5py
 
 path_i = './inputs/'
-path_o = './outputs'
+path_o = './outputs/'
 
 mesh = TensorMesh._readUBC_3DMesh(path_i + "mesh.txt")
 
@@ -59,7 +58,7 @@ loss_array, model_cache, acceptance_count = L.mcmc_sampling_single_chain(iter_nu
 
 # Save data
 num_chain = 1
-hf = h5py.File('Sampling_chain_{}.h5'.format(num_chain), 'w')
+hf = h5py.File(path_o + 'output_sampling_chain_{}.h5'.format(num_chain), 'w')
 hf.create_dataset('loss', data = loss_array)
 hf.create_dataset('acceptance', data = acceptance_count)
 hf.create_dataset('model_dist', data = model_cache)
