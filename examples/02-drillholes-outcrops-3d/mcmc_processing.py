@@ -19,7 +19,7 @@ model_array = np.array(hf.get('model_dist'))
 loss = np.array(hf.get('loss'))
 hf.close()
 
-cut_off = 500
+cut_off = 800
 independence = -1*np.arange(0, cut_off, 2)
 model_array_cut = model_array[independence, :, :, :]
 

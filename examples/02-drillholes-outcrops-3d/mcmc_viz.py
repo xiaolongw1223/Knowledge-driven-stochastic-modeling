@@ -56,7 +56,7 @@ outcrops_contact_ind = np.where(outcrops==0.5)[0]
 outcrops_contact_coord = mesh.cell_centers[outcrops_contact_ind, :]
 
 # Drillholes locations on the surface for visualization
-drillholes_coord = np.loadtxt(path_i + "drillholes_coordinates.txt")
+drillholes_coord = np.loadtxt(path_i + "drillholes_coordinate.txt")
 
 # Compute mean and std models
 # For visualization, please refer to examples/02-drillholes-outcrops-3d
@@ -126,7 +126,7 @@ labels=["Drillholes", "Outcrops"]
 
 fig = plt.figure(figsize=(10,4))
 ax = plt.subplot()
-plt.plot(np.sum(loss, -1), label="total")   
+plt.plot(np.sum(loss, -1), label="Total")   
 for i in range(len(labels)):
     plt.plot(loss[:, i], label="{}".format(labels[i]))
 ax.set_yscale('log')
