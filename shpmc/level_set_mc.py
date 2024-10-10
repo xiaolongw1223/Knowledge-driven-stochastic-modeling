@@ -52,53 +52,13 @@ class StochasticLevelSet(object):
         self.c = contribution
         
     
-    def level_set_perturbation(self, model_sign_dist_current, velocity_field, max_step):
-        
-        """
-        
-        Model perturbation using level set method
-        This function is applicable to both 2D and 3D cases
-        
-        Parameters
-        ----------
-        model_sign_dist_current : array
-            signed distance of the current model
-        velocity_field : TYPE
-            a gaussian field
-        max_step : float
-            a scale parameter to control the degree of model perturbation
-
-        Returns
-        -------
-        model_sign_dist_candidate : array
-            signed distance of the candidate model
-
-        """
-        
-        # Perturbation
-        [_, F_eval] = skfmm.extension_velocities(
-            model_sign_dist_current, 
-            velocity_field, 
-            dx = [1, 1, 1], 
-            order = 1
-            )
-        
-        # Step size
-        step_i  = np.random.uniform(low=0, high=max_step, size=1)[0]
-        dt = step_i / np.max(F_eval)
-        delta_phi = dt * F_eval
-        model_update = model_sign_dist_current - delta_phi # Advection
-        model_sign_dist_candidate = skfmm.distance(model_update)
-        
-        return model_sign_dist_candidate
-    
     
     def loss_computation(self, model_sign_dist):
         
         """
         
         Loss function computation for both binary observations (e.g., boreholes and outcrops) and geological sketches
-        This function is applicable to both 2D and 3D cases
+        This function is applicable to the 3D case.
 
         Parameters
         ----------
@@ -149,6 +109,50 @@ class StochasticLevelSet(object):
         loss_total = np.sum(loss_individual)
         
         return loss_total, loss_individual
+
+
+
+    def level_set_perturbation(self, model_sign_dist_current, velocity_field, max_step):
+        
+        """
+        
+        Model perturbation using level set method
+        This function is applicable to 2D and 3D cases.
+        
+        Parameters
+        ----------
+        model_sign_dist_current : array
+            signed distance of the current model
+        velocity_field : TYPE
+            a gaussian field
+        max_step : float
+            a scale parameter to control the degree of model perturbation
+    
+        Returns
+        -------
+        model_sign_dist_candidate : array
+            signed distance of the candidate model
+    
+        """
+        
+        ndim = velocity_field.ndim
+        
+        # Perturbation
+        [_, F_eval] = skfmm.extension_velocities(
+            model_sign_dist_current, 
+            velocity_field, 
+            dx = np.ones(ndim), 
+            order = 1
+            )
+        
+        # Step size
+        step_i  = np.random.uniform(low=0, high=max_step, size=1)[0]
+        dt = step_i / np.max(F_eval)
+        delta_phi = dt * F_eval
+        model_update = model_sign_dist_current - delta_phi # Advection
+        model_sign_dist_candidate = skfmm.distance(model_update)
+        
+        return model_sign_dist_candidate
 
 
 
