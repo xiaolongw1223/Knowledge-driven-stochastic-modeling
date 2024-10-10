@@ -151,6 +151,7 @@ class StochasticLevelSet(object):
         return loss_total, loss_individual
 
 
+
     def mcmc_sampling_single_chain(
             self,
             iter_num,
@@ -218,89 +219,3 @@ class StochasticLevelSet(object):
         return loss_values, sample_models, acceptance_count
     
     
-    
-    def mcmc_sampling_multi_chains(
-            self,
-            iter_num,
-            chain_num,
-            temperature_ladder,
-            parallel_tempering = False
-            ):
-        
-        """
-    
-        Parameters
-        ----------
-        iter_num : int
-            iteration number
-            
-        Returns
-        -------
-        list
-            outputs from the sampling
-            
-        """
-        
-        assert len(self.model) == len(temperature_ladder) == chain_num, "Initial models, temperature ladder and chains must be same!"
-        
-        # Initialization
-        loss_chains = []
-        model_chains = []
-        acceptance_chains = []
-        
-        for i in range(chain_num):
-            nx, ny, nz = self.model[0].shape
-            
-            sample_models = np.zeros((iter_num, nx, ny, nz))
-            loss_values = np.zeros((iter_num, self.nd))
-            
-            model_sign_dist_current = skfmm.distance(self.model[i])
-            loss_total_current, loss_individual_current = self.loss_computation(model_sign_dist_current)
-            
-            # Storing initials
-            loss_values[0, :] = loss_individual_current
-            sample_models[0, :] = model_sign_dist_current
-            acceptance_count = 1
-            
-            loss_chains.append(loss_values)
-            model_chains.append(sample_models)
-            acceptance_chains.append(acceptance_count)
-        
-        for ii in tqdm(np.arange(iter_num-1)):
-            
-            for i in range(chain_num):
-                velocity_field, theta = self.gaussian_field.field_3d
-                model_sign_dist_candidate = self.level_set_perturbation(model_sign_dist_current, velocity_field, self.max_step)
-                loss_total_candidate, loss_individual_candidate = self.loss_computation(model_sign_dist_candidate)
-                acceptance_ratio = (loss_total_current**2 - loss_total_candidate**2) / temperature_ladder[i]
-                
-                # Accept
-                if np.log(np.random.uniform(0, 1)) <= acceptance_ratio:
-                    loss_chains[i][ii+1, :] = loss_individual_candidate
-                    acceptance_chains[i] += 1 
-                    model_sign_dist_current = model_sign_dist_candidate
-                    loss_total_current = loss_total_candidate
-                    
-                # Reject
-                else:
-                    loss_chains[i][ii+1, :] = loss_chains[i][ii, :]
-    
-                model_chains[i][ii+1, :] = model_sign_dist_current
-                
-            # Swap
-            if parallel_tempering:
-                
-                assert chain_num > 1, "Parallel tempering requires at leat two chains!"
-                
-                for i in range(chain_num):
-                    p, q = random.sample(range(0, len(temperature_ladder)), 2)
-                    loss_p, loss_q = np.sum(loss_chains[p][ii+1, :]), np.sum(loss_chains[q][ii+1, :])
-                    ratio_swap = (1/temperature_ladder[p] - 1/temperature_ladder[q]) * (loss_p - loss_q)
-                    
-                    if np.random.uniform(0, 1) <= ratio_swap:
-                        loss_chains[p][ii+1, :], loss_chains[q][ii+1, :] = loss_chains[q][ii+1, :], loss_chains[p][ii+1, :]
-                        model_chains[p][ii+1, :], model_chains[q][ii+1, :] = model_chains[q][ii+1, :], model_chains[p][ii+1, :]
-                    
-    
-        return loss_chains, model_chains, acceptance_chains
-
