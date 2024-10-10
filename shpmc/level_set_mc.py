@@ -177,8 +177,7 @@ class StochasticLevelSet(object):
         assert len(self.model) == 1, "Single chain can only have one initial model!"
         
         # Initialization
-        nx, ny, nz = self.model[0].shape
-        sample_models = np.zeros((iter_num, nx, ny, nz))
+        sample_models = np.zeros((iter_num, *self.model[0].shape))
         loss_values = np.zeros((iter_num, self.nd))
         
         model_sign_dist_current = skfmm.distance(self.model[0])
