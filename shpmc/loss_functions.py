@@ -57,6 +57,7 @@ def loss_function_binary(observations, observations_sign_dist, observations_sign
     return loss
 
 
+
 def model_sign_dist_to_data(model_sign_dist, data):
     
     """
@@ -93,47 +94,6 @@ def model_sign_dist_to_data(model_sign_dist, data):
     obs_sign_dist_contact = model_sign_dist[data == 0.5]
     
     return obs, obs_sign_dist, obs_sign_dist_contact
-
-
-def find_sketch_from_model_3d(model, ind_, direction):
-    
-    """
-    
-    Find the geological sketch profile
-    
-    Parameters
-    ----------
-    model : array
-        randomly sampled 3D model
-    ind_ : int or list
-        index of the geological profile
-    direction : str
-        profile direction ("X", "Y", "Z")
-
-    Returns
-    -------
-    comparision_shape : array
-        the model profile to be compared with the geological sketch
-
-    """
-    
-    
-    if isinstance(ind_, list):
-        # Randomly select a cross-section
-        ind_tmp = random.randint(ind_[0], ind_[-1])
-        if direction == 'x': model_sketch = model[ind_tmp, :, :]
-        if direction == 'y': model_sketch = model[:, ind_tmp, :]
-        if direction == 'z': model_sketch = model[:, :, ind_tmp]
-    
-    else:
-        if direction == 'x': model_sketch = model[ind_, :, :]
-        if direction == 'y': model_sketch = model[:, ind_, :]
-        if direction == 'z': model_sketch = model[:, :, ind_]
-        
-    comparision_shape = np.zeros_like(model_sketch)
-    comparision_shape[model_sketch>0] = 1
-    
-    return comparision_shape
 
 
 
@@ -215,5 +175,43 @@ def loss_ordinary_procrustes_analysis(shape_reference, shape_comparision, contri
 
 
 
+def find_sketch_cross_section(self, model, ind_, direction):
+    
+    """
+    
+    Find the geological sketch profile
+    
+    Parameters
+    ----------
+    model : array
+        randomly sampled 3D model
+    ind_ : int or list
+        index of the geological profile
+    direction : str
+        profile direction ("X", "Y", "Z")
 
+    Returns
+    -------
+    comparision_shape : array
+        the model profile to be compared with the geological sketch
+
+    """
+    
+    if isinstance(ind_, list):
+        # Randomly select a cross-section
+        ind_tmp = random.randint(ind_[0], ind_[-1])
+        
+        if direction == 'x': model_sketch = model[ind_tmp, :, :]
+        if direction == 'y': model_sketch = model[:, ind_tmp, :]
+        if direction == 'z': model_sketch = model[:, :, ind_tmp]
+    
+    else:
+        if direction == 'x': model_sketch = model[ind_, :, :]
+        if direction == 'y': model_sketch = model[:, ind_, :]
+        if direction == 'z': model_sketch = model[:, :, ind_]
+        
+    comparision_shape = np.zeros_like(model_sketch)
+    comparision_shape[model_sketch>0] = 1
+    
+    return comparision_shape    
 

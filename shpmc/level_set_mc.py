@@ -5,10 +5,59 @@ import numpy as np
 import random
 from tqdm import tqdm
 import skfmm
-from shpmc.loss_functions import loss_function_binary, model_sign_dist_to_data, find_sketch_from_model_3d, loss_ordinary_procrustes_analysis
+from shpmc.loss_functions import (
+    loss_function_binary, 
+    model_sign_dist_to_data, 
+    loss_ordinary_procrustes_analysis,
+    find_sketch_cross_section
+    )
 
 
-class StochasticLevelSet(object):
+def level_set_perturbation(model_sign_dist_current, velocity_field, max_step):
+    
+    """
+    
+    Model perturbation using level set method
+    This function is applicable to 2D and 3D cases.
+    
+    Parameters
+    ----------
+    model_sign_dist_current : array
+        signed distance of the current model
+    velocity_field : TYPE
+        a gaussian field
+    max_step : float
+        a scale parameter to control the degree of model perturbation
+
+    Returns
+    -------
+    model_sign_dist_candidate : array
+        signed distance of the candidate model
+
+    """
+    
+    ndim = velocity_field.ndim
+    
+    # Perturbation
+    [_, F_eval] = skfmm.extension_velocities(
+        model_sign_dist_current, 
+        velocity_field, 
+        dx = np.ones(ndim), 
+        order = 1
+        )
+    
+    # Step size
+    step_i  = np.random.uniform(low=0, high=max_step, size=1)[0]
+    dt = step_i / np.max(F_eval)
+    delta_phi = dt * F_eval
+    model_update = model_sign_dist_current - delta_phi # Advection
+    model_sign_dist_candidate = skfmm.distance(model_update)
+    
+    return model_sign_dist_candidate    
+
+
+
+class StochasticLevelSet3D(object):
     
     
     def __init__ (self, data, model_initial, gaussian_field, max_step, contribution):
@@ -45,14 +94,14 @@ class StochasticLevelSet(object):
         
         self.data = data
         self.nd = len(data)
+        # self.ndim = model_initial[0].ndim
         
         self.model = model_initial
         self.gaussian_field = gaussian_field
         self.max_step = max_step
         self.c = contribution
         
-    
-    
+        
     def loss_computation(self, model_sign_dist):
         
         """
@@ -78,21 +127,21 @@ class StochasticLevelSet(object):
         
         for count, ele in enumerate(self.data):
             
-            # Loss function of geological sketch
+            # Geological sketch
             if isinstance(ele, list):
                 
                 # Extract model profile to compare with the geological sketch
-                comparision_shape = find_sketch_from_model_3d(
+                comparision_shape = find_sketch_cross_section(
                     model = model_sign_dist, 
                     ind_ = ele[1], 
                     direction = ele[2]
                     )
                 
-                # Difference between reference shape (i.e., geological sketch) and comparision shape
+                # Difference between reference shape (i.e., geological sketch) and comparison shape
                 dist_procrustes, Z, translation = loss_ordinary_procrustes_analysis(ele[0], comparision_shape, self.c[count])
                 loss_individual[count] = dist_procrustes
         
-            # Binary observations, such as boreholes and outcrops
+            # Binary observations, such as drillholes and outcrops
             else:
                 obs, obs_sign_dist, obs_sign_dist_contact = model_sign_dist_to_data(
                     model_sign_dist, 
@@ -111,56 +160,7 @@ class StochasticLevelSet(object):
         return loss_total, loss_individual
 
 
-
-    def level_set_perturbation(self, model_sign_dist_current, velocity_field, max_step):
-        
-        """
-        
-        Model perturbation using level set method
-        This function is applicable to 2D and 3D cases.
-        
-        Parameters
-        ----------
-        model_sign_dist_current : array
-            signed distance of the current model
-        velocity_field : TYPE
-            a gaussian field
-        max_step : float
-            a scale parameter to control the degree of model perturbation
-    
-        Returns
-        -------
-        model_sign_dist_candidate : array
-            signed distance of the candidate model
-    
-        """
-        
-        ndim = velocity_field.ndim
-        
-        # Perturbation
-        [_, F_eval] = skfmm.extension_velocities(
-            model_sign_dist_current, 
-            velocity_field, 
-            dx = np.ones(ndim), 
-            order = 1
-            )
-        
-        # Step size
-        step_i  = np.random.uniform(low=0, high=max_step, size=1)[0]
-        dt = step_i / np.max(F_eval)
-        delta_phi = dt * F_eval
-        model_update = model_sign_dist_current - delta_phi # Advection
-        model_sign_dist_candidate = skfmm.distance(model_update)
-        
-        return model_sign_dist_candidate
-
-
-
-    def mcmc_sampling_single_chain(
-            self,
-            iter_num,
-            temperature = 1
-            ):
+    def mcmc_sampling_single_chain(self, iter_num, temperature = 1):
         
         """
     
@@ -199,7 +199,7 @@ class StochasticLevelSet(object):
             velocity_field, theta = self.gaussian_field.field_3d
             
             # Model perturbation
-            model_sign_dist_candidate = self.level_set_perturbation(model_sign_dist_current, velocity_field, self.max_step)
+            model_sign_dist_candidate = level_set_perturbation(model_sign_dist_current, velocity_field, self.max_step)
             
             # Loss function
             loss_total_candidate, loss_individual_candidate = self.loss_computation(model_sign_dist_candidate)
@@ -220,5 +220,4 @@ class StochasticLevelSet(object):
             sample_models[ii+1, :] = model_sign_dist_current
     
         return loss_values, sample_models, acceptance_count
-    
     

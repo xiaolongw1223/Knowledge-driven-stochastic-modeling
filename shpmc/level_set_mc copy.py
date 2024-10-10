@@ -111,6 +111,7 @@ class StochasticLevelSet(object):
         return loss_total, loss_individual
 
 
+
     def level_set_perturbation(self, model_sign_dist_current, velocity_field, max_step):
         
         """
@@ -152,6 +153,7 @@ class StochasticLevelSet(object):
         model_sign_dist_candidate = skfmm.distance(model_update)
         
         return model_sign_dist_candidate
+
 
 
     def mcmc_sampling_single_chain(

@@ -5,7 +5,7 @@ import sys
 sys.path.append('../../')
 import numpy as np
 from discretize import TensorMesh
-from shpmc.level_set_mc import StochasticLevelSet
+from shpmc.level_set_mc import StochasticLevelSet3D
 from shpmc.geo_stats import GaussianField
 import h5py
 
@@ -45,7 +45,7 @@ gf = GaussianField(
   )
 
 # McMC level set
-L = StochasticLevelSet(
+L = StochasticLevelSet3D(
     data_3d, 
     initial_3d, 
     gaussian_field=gf, 

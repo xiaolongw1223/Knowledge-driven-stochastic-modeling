@@ -3,18 +3,16 @@
 import sys
 sys.path.append('../../')
 import numpy as np
-import scipy as sp
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 16
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
 
-from shpmc.level_set_mc import level_set_perturbation
-
 from discretize import TensorMesh
 import skfmm
 from tqdm import tqdm
 
+from shpmc.level_set_mc import level_set_perturbation
 from shpmc.geo_stats import GaussianField
 from shpmc.loss_functions import (
     loss_function_binary, 
@@ -22,53 +20,9 @@ from shpmc.loss_functions import (
     loss_ordinary_procrustes_analysis,
     )
 
-
-# def level_set_perturbation(model_sign_dist_current, velocity_field, max_step):
-    
-#     """
-    
-#     Model perturbation using level set method
-#     This function is applicable to the 2D case.
-    
-#     Parameters
-#     ----------
-#     model_sign_dist_current : array
-#         signed distance of the current model
-#     velocity_field : TYPE
-#         a gaussian field
-#     max_step : float
-#         a scale parameter to control the degree of model perturbation
-
-#     Returns
-#     -------
-#     model_sign_dist_candidate : array
-#         signed distance of the candidate model
-
-#     """
-    
-#     # Perturbation
-#     [_, F_eval] = skfmm.extension_velocities(
-#         model_sign_dist_current, 
-#         velocity_field, 
-#         dx = [1, 1], # change for 2d
-#         order = 1
-#         )
-    
-#     # Step size
-#     step_i  = np.random.uniform(low=0, high=max_step, size=1)[0]
-#     dt = step_i / np.max(F_eval)
-#     delta_phi = dt * F_eval
-#     model_update = model_sign_dist_current - delta_phi # Advection
-#     model_sign_dist_candidate = skfmm.distance(model_update)
-    
-#     return model_sign_dist_candidate
-
-
-
+#%% Initialization
 path_i = './inputs/'
 path_o = './outputs/'
-
-index_num = 8
 
 # Construct mesh
 dh = 1
@@ -81,7 +35,6 @@ cell_centers = mesh.cell_centers
 drillholes_2d = np.loadtxt(path_i + 'drillhole_vertical.txt')
 sketch_2d = np.loadtxt(path_i + 'sketch.txt')
 sketch_coord = cell_centers[np.where(sketch_2d.reshape(-1, order='F')==1)[0], :]
-
 
 # Initial model
 initial_2d = np.loadtxt(path_i + 'initial_model.txt')
@@ -104,16 +57,13 @@ gf = GaussianField(
   )
 
 
-
-# Initialization
-
-cd = 0.1
-cs = 20
+# Parameters of MCMC
+cd = 1 # Contribution of drillhole
+cs = 5 # Contribution of sketch
 temperature = 5
 max_step = 1
-iter_num = 300
-nx, ny = mesh.shape_cells
-sample_models = np.zeros((iter_num, nx, ny)) # change for 2d
+iter_num = 5000
+sample_models = np.zeros((iter_num, *mesh.shape_cells)) # change for 2d
 loss_values = np.zeros((iter_num, 2))
 
 model_sign_dist_current = skfmm.distance(initial_2d)
@@ -139,6 +89,7 @@ sample_models[0, :] = model_sign_dist_current
 
 acceptance_count = 1
 
+#%% Level set MCMC
 for ii in tqdm(np.arange(iter_num-1)):
 
     # Create velocity fields
@@ -178,57 +129,65 @@ for ii in tqdm(np.arange(iter_num-1)):
     sample_models[ii+1, :] = model_sign_dist_current
     
 
-# Save data
+#%% Save data
 import h5py
-num_chain = index_num
-hf = h5py.File('Sampling_chain_{}.h5'.format(num_chain), 'w')
+num_chain = 2
+hf = h5py.File(path_o + 'output_sampling_chain_{}.h5'.format(num_chain), 'w')
 hf.create_dataset('loss', data = loss_values)
 hf.create_dataset('acceptance', data = acceptance_count)
 hf.create_dataset('model_dist', data = sample_models)
 hf.close()
 
-labels=["borehole", "sketch"]
-fig = plt.figure()
-plt.plot(np.sum(loss_values, -1), label="total")   
-for i in range(2):
-    plt.plot(loss_values[:, i], label="{}".format(labels[i]))
-plt.yscale('log')
-plt.legend()
-plt.savefig('fig_loss_{}.png'.format(index_num))
 
-model_array_cut = sample_models[-10000:, :, :]
-model_array_cut_unique = np.unique(model_array_cut, axis=0)
+#%% Processing
+cut_off = 2000
+independence = -1*np.arange(0, cut_off, 2)
+model_array_cut = sample_models[independence, :, :]
 
-n = model_array_cut_unique.shape[0]
+n = model_array_cut.shape[0]
 model_1d = np.zeros([mesh.nC, n])
 model_dist_1d = np.zeros([mesh.nC, n])
 
 for i in np.arange(n):
-    m_dist_1d = np.reshape(model_array_cut_unique[i, :, :], -1, order="F")
-    
-    # 1
+    m_dist_1d = np.reshape(model_array_cut[i, :, :], -1, order="F")
     m = np.zeros(mesh.nC)
     m[np.where(m_dist_1d >= 0)[0]] = 1
     model_1d[:, i] = m
-    
-    # 2
-    m = m_dist_1d
-    model_dist_1d[:, i] = m
 
 
+#%% Visualization
+# Fig 1
+labels=["Drillhole", "Sketch"]
+fig = plt.figure(figsize=(6,4))
+ax = plt.subplot()
+ax.plot(np.sum(loss_values, -1), label="Total")   
+for i in range(2):
+    ax.plot(loss_values[:, i], label="{}".format(labels[i]))
+ax.set_yscale('log')
+ax.set_xlabel('Sampling steps')
+ax.set_ylabel('Loss value')
+plt.legend(loc='upper right', edgecolor='white', ncol=1)
+plt.savefig(path_o +'fig_loss.png', bbox_inches="tight", dpi=300)
+
+
+# Fig 2
 std = np.std(model_1d, 1)
 std_2d = std.reshape(mesh.shape_cells[0], mesh.shape_cells[1], order='F')
 fig = plt.figure()
 plt.imshow(std_2d.T, origin='lower')
 plt.imshow(drillholes_2d.T, origin='lower', cmap='binary')
-plt.savefig('fig_std_{}.png'.format(index_num))
+plt.xlabel('X')
+plt.ylabel('Z')
+plt.savefig(path_o + 'fig_std.png')
 
-
+# Fig 3
 mean = np.mean(model_1d, 1)
 mean_2d = mean.reshape(mesh.shape_cells[0], mesh.shape_cells[1], order='F')
 fig = plt.figure()
 plt.imshow(mean_2d.T, origin='lower')
 plt.imshow(drillholes_2d.T, origin='lower', cmap='binary')
-plt.savefig('fig_mean_{}.png'.format(index_num))
+plt.xlabel('X')
+plt.ylabel('Z')
+plt.savefig(path_o + 'fig_mean.png')
 
 
