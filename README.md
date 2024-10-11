@@ -27,7 +27,7 @@ Acknowledgment:
 
 [Kobold Metals](https://www.koboldmetals.com/)
 
-[Lijing Wang]()
+[Lijing Wang](https://earthsciences.uconn.edu/person/lijing_wang/)(lijing.wang@uconn.edu)
 
 <br>
 <br>
