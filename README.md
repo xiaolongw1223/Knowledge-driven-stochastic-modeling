@@ -52,7 +52,7 @@ pip install -r requirements.txt
 
 ## Issues
 
-Please [make an issue](https://github.com/xiaolongw1223/2020-GP-recovering-sparse-models/issues) if you encounter any problems while trying to run the notebooks.
+Please [make an issue](https://github.com/xiaolongw1223/Knowledge-driven-stochastic-modeling/issues) if you encounter any problems while trying to run the notebooks.
 
 ## Citations
 
