@@ -7,13 +7,13 @@
 
 ## Summary
 
-Plain Language Summary:
+### Plain Language Summary:
 
 Understanding the shape and geometry of the subsurface structures is very important in geosciences. Various data sources have been employed to infer the geometric features of geological units. The framework developed in our study allows to include drawings of geological diagrams, which represent expert knowledge, into stochastic simulations. The constructed 3D models are aligned with geological diagram, drillhole data, outcrop contacts, and geophysics. We quantify the uncertainty of geometric characteristics for constructed models.
 
 <img src="docs/images/animation_drillholes.gif" width=50% align="right">
 
-Authors:
+### Authors:
 
 Xiaolong Wei (xwei2@stanford.edu)
 
@@ -23,7 +23,7 @@ Wilson Bonner (wilson.bonner@koboldmetals.com)
 
 Jef Caers (jcaers@stanford.edu)
 
-Acknowledgments:
+### Acknowledgments:
 
 [Kobold Metals](https://www.koboldmetals.com/)
 
