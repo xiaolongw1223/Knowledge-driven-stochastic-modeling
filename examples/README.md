@@ -70,5 +70,10 @@ We aim to stochastically construct models that align with the drillhole and a ge
 
 **Input files**
 
+- "drillhole_vertical.txt": a 2D array with drillhole information where 1, 0, and 0.5 indicate the intrusion, non-intrusion, and contact points, respectively.
+
+- "initial_model.txt": starting model used in Monte Carlo sampling, which is a ranomly generated ellipse.
+
+- "sketch.txt": a 2D binary geological sketch.
 
 **Results**
