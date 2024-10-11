@@ -64,7 +64,9 @@ The mean model aligns with the outcrops after 1000 sampling steps. More sampling
 
 **Data overview**
 
+We aim to stochastically construct models that align with the drillhole and a geological sketch. The geological sketch can be obtained from literature or consultations with experts.
 
+<img src="../docs/images/case_3.png" width=60% align="middle">
 
 **Input files**
 
