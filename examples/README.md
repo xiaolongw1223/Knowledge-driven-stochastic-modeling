@@ -38,9 +38,6 @@ The model files exceed the size limit for GitHub, so please download the package
 
 <img src="../docs/images/case_1.png" width=50% align="middle">
 
-<br>
-
-<br>
 
 ## Case 2: 3D stochastic modeling constrained by drillholes and outcrops
 
@@ -58,10 +55,18 @@ We only clarify the files that differ from Case 1.
 
 **Results**
 
+The mean model aligns with the outcrops after 1000 sampling steps. More sampling steps will result in a better match.
+
 <img src="../docs/images/case_2.png" width=50% align="middle">
+
 
 ## Case 3: 2D stochastic modeling constrained by drillholes and a geological sketch
 
+**Data overview**
 
 
 
+**Input files**
+
+
+**Results**
