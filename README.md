@@ -1,3 +1,5 @@
+<img src="docs/images/mineralx_logo.png" width=70% align="middle">
+
 **[summary](#summary) | [contents](#contents) | [usage](#usage) | [running the code](#running-the-code) | [issues](#issues) | [citations](#citations)**
 
 # Stochastic modeling of geological geometry features
@@ -23,6 +25,7 @@ Jef Caers (jcaers@stanford.edu)
 
 ## Contents
 
+This repo includes
 - ShpMC: functions
 
 - inputs: input files
