@@ -12,11 +12,11 @@ Can constructed models help make informed decisions for subsequent exploratory a
 
 <img src="../docs/images/true_data.gif" width=50% align="middle">
 
-Animation caption: the dark red indicates the drillholes whose locations are makred by yellow balls, black dots are the outcrop contacts, colorful lines are the survey lines of airborne geophysics. 
+Animation caption: The dark red bars represent the drillholes whose locations are marked by yellow balls. Black dots indicate the outcrop contacts and the colorful lines represent the survey lines of airborne geophysics. All these data sets will be incorporated into a stochastic modeling process. The field data cannot be shared, so we created realistic synthetic data used in the tutorials.
 
 ## Case 1: 3D stochastic modeling constrained by drillholes
 
-
+**Data overview**
 
 **Input files**
 
