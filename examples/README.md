@@ -1,8 +1,12 @@
 # Examples
 
-## Example 1: 3D stochastic modeling constrained by drillholes
+## Case 1: 3D stochastic modeling constrained by drillholes
+**Research problem formulation**
 
-## Example 2: 3D stochastic modeling constrained by drillholes and outcrops
+**Input files**
 
+**Results**
 
-## Example 3: 2D stochastic modeling constrained by drillholes and a geological sketch
+## Case 2: 3D stochastic modeling constrained by drillholes and outcrops
+
+## Case 3: 2D stochastic modeling constrained by drillholes and a geological sketch
