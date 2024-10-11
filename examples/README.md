@@ -40,6 +40,8 @@ The model files exceed the size limit for GitHub, so please download the package
 
 <br>
 
+<br>
+
 ## Case 2: 3D stochastic modeling constrained by drillholes and outcrops
 
 **Data overview**
