@@ -1,7 +1,7 @@
 <img src="docs/images/mineralx_logo.png" width=70% align="middle">
 
 # Stochastic modeling of geological geometry features
-**[summary](#summary) | [features](#features) | [usage](#usage) | [running the code](#running-the-code) | [issues](#issues) | [citations](#citations)**
+**[summary](#summary) | [features](#features) | [usage](#usage) | [issues](#issues) | [citations](#citations)**
 
 [![DOI](https://img.shields.io/badge/DOI-10.1190%2FGEM2024--091.1-blue.svg)](https://doi.org/10.1190/GEM2024-091.1)
 
@@ -36,108 +36,19 @@ Jef Caers (jcaers@stanford.edu)
 
 This package has the following features:
 
-- Perform 2D/3D level-set Monte Carlo sampling to explore model uncertainty
-- Construct geometric models constrained by drillholes, outcrop contacts, and geological diagrams
+- Perform 2D/3D level-set Monte Carlo sampling to construct geological models
+- Construct models constrained by drillholes, outcrop contacts, and geological diagrams
 - Impose constraints individually or jointly
-- Quantify uncertainty of the constructed geometric models
+- Quantify uncertainty of the constructed models
 - Simulate gravity and magnetic data for the constructed models using [SimPEG](https://simpeg.xyz/)
 - Falsify geological hypotheses (on-going)
 
-
-
-
-
-
-
-
-
-Sparse inversions have proven to be useful for interpreting potential‐field data because the recovered models are characterized by sharp boundaries, compact features and elevated values, compared with conventional smoothness‐based inversion results. However, several open problems remain to be addressed, including the boundary dependence and staircasing problems. The former results in recovered anomalous values being close to the upper bound, while the latter leads to recovered anomalous bodies with either horizontal or vertical boundaries. We have developed a mixed Lp norm regularization strategy to address these two problems. Inversion results based on two synthetic examples confirm the validity of our approach.
-
-
-
-Introduction of "Input.json" file
-
-- data_file: observed gravity gradient data.
-
-- mesh_file: model discretization or parameterization.
-
-- example: we can select either "spheric" or "horse" to perform inversion using spherical anomaly body or horse shoe shaped model, respectively. And the results (e.g., figures and data) will be stored in the corresponding folders named by the date and time.
-
-- topography: added topography.
-
-- lower_bound and upper_bound: lower and upper bound applied to constraint inversion.
-
-- norm_p: norm value implemented on the smallness component of regularization term.
-
-- norm_q: norm value implemented on the three smoothness componenets of regularization term.
-
-- alpha_s: a constant weighting parameter for smallness component.
-
-- alpha_x: a constant weighting parameter for smoothness component in x direction.
-
-- alpha_y: a constant weighting parameter for smoothness component in y direction.
-
-- alpha_z: a constant weighting parameter for smoothness component in z direction.
-
-Examples
-
-- To reproduce our results, we have created two example folders: Example1_spheric and Example2_horseShoe, that contain the observed data, mesh and topography files. To reproduce the inversion results in Figure 2(a), the Input.json file looks like the following:
-```
-		"data_file": "gzz.obs",
-		"mesh_file": "mesh.txt",
-		"example": "spheric",
-		"topography": "topo.topo",
-		"lower_bound": -1,
-		"upper_bound": 0.2,
-		"norm_p": 1,
-		"norm_q": 2,
-		"alpha_s": 1,
-		"alpha_x": 0,
-		"alpha_y": 0,
-		"alpha_z": 0
-```
-
-- p=q=2: classic L2 norm inversion (Li and Oldenburg, 1996, 1998)
-
-- p=q=1 or 0: sparse inversion (Farquharson, 2008; Sun and Li, 2014)
-
-- p!=q: mixed Lp norm inversion (Fournier and Oldenburg, 2019)
-
-- alpha_s=0, q=0: focusing inversion (Portniaguine and Zhdanov, 1999)
-
-- alpha_s=0, q=1: total variation inversion (Rudin et al., 1992)
-
 ## Usage
 
-To run the script locally, you need to have python installed, [anaconda](https://www.anaconda.com/download/) is recommended.
-
-- Install dependencies:
+To run the package locally, you need to have python installed, followed by the installation of dependencies:
 ```
 pip install -r requirements.txt
 ```
-
-- Or, set up working environment using conda:
-```
-conda env create -f environment.yml
-conda activate sparse-environment
-```
-
-- Install a modified version of SimPEG. Xiaolong made a few changes, yet haven't pull request so far.
-```
-pip install git+https://github.com/xiaolongw1223/simpeg.git@Joinv_0.13.0_gzz --upgrade --user
-```
-
-## Running the code
-
-Download the code and unzip the file,
-
-- In an IPython console
-
-      run MixedLpInversion.py Input.json
-
-- In a command terminal
-
-      $ python MixedLpInversion.py Input.json
 
 ## Issues
 
