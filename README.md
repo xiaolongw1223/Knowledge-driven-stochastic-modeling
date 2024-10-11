@@ -40,8 +40,8 @@ This package has the following features:
 - Construct models constrained by drillholes, outcrop contacts, and geological diagrams
 - Impose constraints individually or jointly
 - Quantify uncertainty of the constructed models
-- Simulate gravity and magnetic data for the constructed models using [SimPEG](https://simpeg.xyz/) (on-going)
-- Falsify geological hypotheses (on-going)
+- Simulate gravity and magnetic data for the constructed models using [SimPEG](https://simpeg.xyz/) (ongoing)
+- Falsify geological hypotheses (ongoing)
 
 ## Usage
 
