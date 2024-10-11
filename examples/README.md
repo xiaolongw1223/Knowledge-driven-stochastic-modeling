@@ -34,7 +34,9 @@ The figure on the right shows the drillholes, outcrop contacts and topography us
 
 **Results**
 
-The model files exceed the size limit for GitHub, so please download the package and reproduce the results locally.
+The model files exceed the size limit for GitHub, so please download the package and reproduce the results locally. Here we provide a quick example. The mean and standard deviation models shown below demonstrate the goodness of fit with the drillhole. However, the resulting models cannot match with outcrop contacts ([Wei et al., 2024](https://library.seg.org/doi/abs/10.1190/GEM2024-091.1)). We thus impose both drillholes and outcrops serving as constraints in the Case 2. 
+
+<img src="../docs/images/case_1.png" width=50% align="middle">
 
 ## Case 2: 3D stochastic modeling constrained by drillholes and outcrops
 
