@@ -21,13 +21,13 @@ David Zhen Yin (yinzhen@stanford.edu)
 
 Wilson Bonner (wilson.bonner@koboldmetals.com)
 
+Lijing Wang(lijing.wang@uconn.edu)
+
 Jef Caers (jcaers@stanford.edu)
 
 #### Acknowledgments:
 
 [Kobold Metals](https://www.koboldmetals.com/)
-
-Lijing Wang(lijing.wang@uconn.edu)
 
 <br>
 <br>
