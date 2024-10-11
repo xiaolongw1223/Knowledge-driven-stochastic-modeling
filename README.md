@@ -1,7 +1,7 @@
 <img src="docs/images/mineralx_logo.png" width=70% align="middle">
 
 # Stochastic modeling of geological geometry features
-**[Summary](#Summary) | [Features](#Features) | [Usage](#Usage) | [Citations](#Citations) | [Issues](#Issues)**
+**[Summary](#summary) | [Features](#features) | [Usage](#usage) | [Citations](#citations) | [Issues](#issues)**
 
 [![DOI](https://img.shields.io/badge/DOI-10.1190%2FGEM2024--091.1-blue.svg)](https://doi.org/10.1190/GEM2024-091.1)
 [![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.cageo.2023.105419--091.1-blue.svg)](https://doi.org/10.1016/j.cageo.2023.105419)
