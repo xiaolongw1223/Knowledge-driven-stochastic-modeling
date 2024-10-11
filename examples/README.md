@@ -1,5 +1,8 @@
 # Tutorials
 
+## Table of Contents
+[Research problem formulation](#research-problem-formulation)
+
 ## Research problem formulation
 
 How can subsurface models be constructed using drillholes, outcrop contacts, and airborne geophysics? 
