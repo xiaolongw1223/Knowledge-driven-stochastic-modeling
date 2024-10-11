@@ -1,10 +1,15 @@
 **[summary](#summary) | [contents](#contents) | [usage](#usage) | [running the code](#running-the-code) | [issues](#issues) | [citations](#citations)**
 
 # Stochastic modeling of geological geometry features
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4057134.svg)](https://doi.org/10.5281/zenodo.4057134)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4057134.svg)](https://doi.org/10.5281/zenodo.4057134)
+[![DOI](https://img.shields.io/badge/DOI-10.1190%2FGEM2024--091.1-blue.svg)](https://doi.org/10.1190/GEM2024-091.1)
 
-<img src="docs/images/animation_drillholes.gif" width=50% align="middle">
+<img src="docs/images/animation_drillholes.gif" width=70% align="middle">
+
+## Summary
+
+Plain Language Summary:
+
+Understanding the shape and geometry of the subsurface structures is very important in geosciences. Various data sources have been employed to infer the geometric features of geological units. The framework developed in our study allows to include drawings of geological diagrams, which represent expert knowledge, into stochastic simulations. The constructed 3D models are aligned with geological diagram, drillhole data, outcrop contacts, and geophysics. We quantify the uncertainty of geometric characteristics for constructed models.
 
 Authors:
 
@@ -16,7 +21,7 @@ Wilson Bonner (wilson.bonner@koboldmetals.com)
 
 Jef Caers (jcaers@stanford.edu)
 
-Summary
+## Contents
 
 - ShpMC: functions
 
@@ -33,11 +38,11 @@ Summary
 
 
 
-## Summary
+
 
 Sparse inversions have proven to be useful for interpreting potential‐field data because the recovered models are characterized by sharp boundaries, compact features and elevated values, compared with conventional smoothness‐based inversion results. However, several open problems remain to be addressed, including the boundary dependence and staircasing problems. The former results in recovered anomalous values being close to the upper bound, while the latter leads to recovered anomalous bodies with either horizontal or vertical boundaries. We have developed a mixed Lp norm regularization strategy to address these two problems. Inversion results based on two synthetic examples confirm the validity of our approach.
 
-## Contents
+
 
 Introduction of "Input.json" file
 
