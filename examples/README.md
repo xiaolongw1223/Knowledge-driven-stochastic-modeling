@@ -1,10 +1,10 @@
-# Examples
+# Tutorials
 
 ## Research problem formulation
 
 Given a set of drillholes and outcrop contacts, how 
 
-<img src="../docs/images/true_data.png" width=40% align="middle">
+<img src="../docs/images/true_gif.png" width=40% align="middle">
 
 ## Case 1: 3D stochastic modeling constrained by drillholes
 
