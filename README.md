@@ -33,7 +33,6 @@ Jef Caers (jcaers@stanford.edu)
 [Rio Tinto](https://www.riotinto.com/)
 
 <br>
-<br>
 
 ## Features
 
