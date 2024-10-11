@@ -55,7 +55,7 @@ We only clarify the files that differ from Case 1.
 
 **Results**
 
-The mean model aligns with the outcrops after 1000 sampling steps. More sampling steps will result in a better match.
+The mean model aligns with the outcrops after 1000 sampling steps. More sampling steps will result in a better match ([Wei et al., 2024](https://library.seg.org/doi/abs/10.1190/GEM2024-091.1)).
 
 <img src="../docs/images/case_2.png" width=50% align="middle">
 
@@ -64,7 +64,7 @@ The mean model aligns with the outcrops after 1000 sampling steps. More sampling
 
 **Data overview**
 
-We aim to stochastically construct models that align with the drillhole and a geological sketch. The geological sketch can be obtained from literature or consultations with experts.
+We aim to stochastically construct models that align with the drillhole and a geological sketch. The geological sketch can be obtained from literature or consultations with experts. 
 
 <img src="../docs/images/case_3.png" width=60% align="middle">
 
@@ -77,3 +77,7 @@ We aim to stochastically construct models that align with the drillhole and a ge
 - "sketch.txt": a 2D binary geological sketch.
 
 **Results**
+
+The mean model aligns with the drillhole and the water drop shaped geological sketch after 1000 sampling steps. The technical details can be found in [Wei et al., 2024](under review)
+
+<img src="../docs/images/case_3_2.png" width=50% align="middle">
