@@ -50,7 +50,7 @@ To run the package locally, you need to have python installed, followed by the i
 
     pip install -r requirements.txt
 
-Please refer to the provided [examples]() for more details.
+Please refer to the provided [examples](https://github.com/xiaolongw1223/Knowledge-driven-stochastic-modeling/tree/main/examples) for more details.
 
 ## Citations
 
