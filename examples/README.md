@@ -18,11 +18,23 @@ Animation caption: The dark red bars represent the drillholes whose locations ar
 
 **Data overview**
 
-<img src="../docs/images/syn_data.png" width=50% align="middle">
+The figure on the right shows the drillholes, outcrop contacts and topography used in Case 1 and 2.
+
+<img src="../docs/images/syn_data.png" width=30% align="right">
 
 **Input files**
 
+- "drillholes.txt": lithological information from drillholes where 1, 0, and 0.5 indicate the intrusion, non-intrusion, and contact points, respectively.
+
+- "ind_active.txt": bool type file contains topography information, where 1 and 0 correspond to the subsurface and air (above the surface).
+
+- "initial_model.txt": starting model used in Monte Carlo sampling, which is a ranomly generated ellipsoid.
+
+- "mesh.txt": 3D discretization information
+
 **Results**
+
+
 
 ## Case 2: 3D stochastic modeling constrained by drillholes and outcrops
 
