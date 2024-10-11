@@ -2,15 +2,17 @@
 
 ## Research problem formulation
 
-Given a set of drillholes and outcrop contacts, how 
+How can subsurface models be constructed using drillholes, outcrop contacts, and airborne geophysics? 
 
-<img src="../docs/images/true_gif.png" width=40% align="middle">
+How can experts' geological knowledge be incorporated into the modeling process?
 
-## Research problem formulation
+How to quantify the uncertainty of constructed models?
 
-Given a set of drillholes and outcrop contacts, how 
+Can constructed models help make informed decisions for subsequent exploratory actions (e.g., where to drill or to collect more geophysical data)?
 
-<img src="../docs/images/true_data.png" width=40% align="middle">
+<img src="../docs/images/true_data.gif" width=50% align="middle">
+
+Animation caption: the dark red indicates the drillholes whose locations are makred by yellow balls, black dots are the outcrop contacts, colorful lines are the survey lines of airborne geophysics. 
 
 ## Case 1: 3D stochastic modeling constrained by drillholes
 
