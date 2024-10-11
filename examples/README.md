@@ -1,7 +1,9 @@
 # Tutorials
 
 ## Table of Contents
-[Research problem formulation](#research-problem-formulation)
+- [Research problem formulation](#research-problem-formulation)
+- [Case 2: 3D stochastic modeling constrained by drillholes and outcrops](#case-2-3d-stochastic-modeling-constrained-by-drillholes-and-outcrops)
+
 
 ## Research problem formulation
 
