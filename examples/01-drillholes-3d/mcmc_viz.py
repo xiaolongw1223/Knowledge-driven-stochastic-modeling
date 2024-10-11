@@ -66,7 +66,7 @@ for i in range(len(ind_list)):
     kwargs = {'format': '%.1f'}
     cb = plt.colorbar(im[0], cax=cb_ax, orientation="vertical", **kwargs)
     cb.set_label('Standard deviation', rotation=270, labelpad=20)
-    plt.savefig(path_o + 'fig_model_std_drillhole_{}.png'.format(i), bbox_inches="tight", dpi=300)  
+    plt.savefig(path_o + 'fig_model_std_drillhole_{}.png'.format(i+1), bbox_inches="tight", dpi=300)  
 
     # Plot mean model with drillholes
     fig = plt.figure(figsize=(6,6))
@@ -87,7 +87,7 @@ for i in range(len(ind_list)):
     kwargs = {'format': '%.1f'}
     cb = plt.colorbar(im[0], cax=cb_ax, orientation="vertical", **kwargs)
     cb.set_label('Mean', rotation=270, labelpad=20)
-    plt.savefig(path_o + 'fig_model_mean_drillhole_{}.png'.format(i), bbox_inches="tight", dpi=300)  
+    plt.savefig(path_o + 'fig_model_mean_drillhole_{}.png'.format(i+1), bbox_inches="tight", dpi=300)  
     
 
 
