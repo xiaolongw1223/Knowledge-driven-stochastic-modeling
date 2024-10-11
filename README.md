@@ -1,7 +1,7 @@
 <img src="docs/images/mineralx_logo.png" width=70% align="middle">
 
 # Stochastic modeling of geological geometry features
-**[summary](#summary) | [features](#features) | [usage](#usage) | [issues](#issues) | [citations](#citations)**
+**[summary](#summary) | [features](#features) | [usage](#usage) | [citations](#citations) | [issues](#issues)**
 
 [![DOI](https://img.shields.io/badge/DOI-10.1190%2FGEM2024--091.1-blue.svg)](https://doi.org/10.1190/GEM2024-091.1)
 
@@ -50,13 +50,12 @@ To run the package locally, you need to have python installed, followed by the i
 pip install -r requirements.txt
 ```
 
+## Citations
+
+If you use script in your work, please cite:
+
 ## Issues
 
 Please [make an issue](https://github.com/xiaolongw1223/Knowledge-driven-stochastic-modeling/issues) if you encounter any problems while trying to run the notebooks.
 
 Or contact Xiaolong Wei directly via email.
-
-## Citations
-
-If you use script in your work, please cite:
-
