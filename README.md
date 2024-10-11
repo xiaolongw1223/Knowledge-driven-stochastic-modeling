@@ -23,7 +23,7 @@ Wilson Bonner (wilson.bonner@koboldmetals.com)
 
 Jef Caers (jcaers@stanford.edu)
 
-Acknowledgment:
+Acknowledgments:
 
 [Kobold Metals](https://www.koboldmetals.com/)
 
