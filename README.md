@@ -30,6 +30,8 @@ Jef Caers (jcaers@stanford.edu)
 
 [Kobold Metals](https://www.koboldmetals.com/)
 
+[Rio Tinto](https://www.riotinto.com/)
+
 <br>
 <br>
 
