@@ -103,6 +103,8 @@ def loss_ordinary_procrustes_analysis(shape_reference, shape_comparision, contri
     
     Loss function for ordinary procrustes analysis (OPA)
     
+    Refer to Wei et al., 2024 C&G for derivative
+    
     Parameters
     ----------
     shape_reference : array
@@ -179,7 +181,7 @@ def find_sketch_cross_section(self, model, ind_, direction):
     
     """
     
-    Find the geological sketch profile
+    Find the geological sketch profile used for 3D modeling only.
     
     Parameters
     ----------
