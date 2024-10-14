@@ -5,11 +5,13 @@ import numpy as np
 import random
 
 
+
 def loss_function_binary(observations, observations_sign_dist, observations_sign_dist_contact, c):
     
     """
     
-    Loss function for the binary observations
+    Loss function for the binary observations.
+    This function is from Lijing Wang.
     
     Parameters
     ----------
@@ -62,7 +64,8 @@ def model_sign_dist_to_data(model_sign_dist, data):
     
     """
     
-    Transform model signed distance to the observations
+    Transform model signed distance to the observations.
+    This function is from Lijing Wang.
     
     Parameters
     ----------
