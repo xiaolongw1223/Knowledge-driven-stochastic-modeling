@@ -28,7 +28,7 @@ Jef Caers (jcaers@stanford.edu)
 
 **Acknowledgments:**
 
-[Kobold Metals](https://www.koboldmetals.com/)
+[KoBold Metals](https://www.koboldmetals.com/)
 
 [Rio Tinto](https://www.riotinto.com/)
 
