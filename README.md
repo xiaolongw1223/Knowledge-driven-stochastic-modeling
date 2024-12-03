@@ -57,7 +57,18 @@ Please refer to the provided [examples](https://github.com/xiaolongw1223/Knowled
 
 If you are using the package, please cite:
 
-[1] Wei, X., Yin, Z. and Caers, J., 2024, August. Falsification of magmatic intrusion models using outcrops, drillholes, and geophysics. In International Workshop on Gravity, Electrical & Magnetic Methods and Their Applications, Shenzhen, China, May 19–22, 2024 (pp. 364-367). Society of Exploration Geophysicists and Chinese Geophysical Society.
+[1] Wei, X., Yin, Z., Bonner, W. and Caers, J., 2024. Knowledge-driven stochastic modeling of geological geometry features conditioned on drillholes and outcrop contacts. Computers & Geosciences, p.105779.
+
+    @article{wei2024knowledge,
+      title={Knowledge-driven stochastic modeling of geological geometry features conditioned on drillholes and outcrop contacts},
+      author={Wei, Xiaolong and Yin, Zhen and Bonner, Wilson and Caers, Jef},
+      journal={Computers \& Geosciences},
+      pages={105779},
+      year={2024},
+      publisher={Elsevier}
+    }
+
+[2] Wei, X., Yin, Z. and Caers, J., 2024, August. Falsification of magmatic intrusion models using outcrops, drillholes, and geophysics. In International Workshop on Gravity, Electrical & Magnetic Methods and Their Applications, Shenzhen, China, May 19–22, 2024 (pp. 364-367). Society of Exploration Geophysicists and Chinese Geophysical Society.
   
     @inproceedings{wei2024falsification,
       title={Falsification of magmatic intrusion models using outcrops, drillholes, and geophysics},
@@ -68,7 +79,7 @@ If you are using the package, please cite:
       organization={Society of Exploration Geophysicists and Chinese Geophysical Society}
     }
 
-[2] Wang, L., Peeters, L., MacKie, E.J., Yin, Z. and Caers, J., 2023. Unraveling the uncertainty of geological interfaces through data-knowledge-driven trend surface analysis. Computers & Geosciences, 178, p.105419.
+[3] Wang, L., Peeters, L., MacKie, E.J., Yin, Z. and Caers, J., 2023. Unraveling the uncertainty of geological interfaces through data-knowledge-driven trend surface analysis. Computers & Geosciences, 178, p.105419.
 
     @article{wang2023unraveling,
       title={Unraveling the uncertainty of geological interfaces through data-knowledge-driven trend surface analysis},
