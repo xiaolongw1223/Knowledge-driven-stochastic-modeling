@@ -3,6 +3,7 @@
 # Stochastic modeling of geological geometry features
 **[Summary](#summary) | [Features](#features) | [Usage](#usage) | [Citations](#citations) | [Issues](#issues)**
 
+[![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.cageo.2024.105779--091.1-blue.svg)](https://doi.org/10.1016/j.cageo.2024.105779)
 [![DOI](https://img.shields.io/badge/DOI-10.1190%2FGEM2024--091.1-blue.svg)](https://doi.org/10.1190/GEM2024-091.1)
 [![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.cageo.2023.105419--091.1-blue.svg)](https://doi.org/10.1016/j.cageo.2023.105419)
 
