@@ -84,6 +84,6 @@ We aim to stochastically construct models that align with the drillhole and a ge
 
 **Results**
 
-The mean model aligns with the drillhole and the water drop shaped geological sketch after 1000 sampling steps. The technical details can be found in [Wei et al., 2024](under review)
+The mean model aligns with the drillhole and the water drop shaped geological sketch after 1000 sampling steps. The technical details can be found in [Wei et al., 2024](https://www.sciencedirect.com/science/article/abs/pii/S0098300424002620)
 
 <img src="../docs/images/case_3_2.png" width=40% align="middle">
